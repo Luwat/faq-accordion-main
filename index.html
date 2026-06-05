@@ -40,10 +40,8 @@
     }
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: "Work Sans", sans-serif;
+      color: hsl(292, 42%, 14%);
       background-color: hsl(275, 100%, 97%);
       background-image: url("./assets/images/background-pattern-desktop.svg");
       background-repeat: no-repeat;
@@ -57,24 +55,71 @@
     }
 
     #faqs-card {
-      background-color: hsl(0, 100%, 100%);
+      background-color: hsl(0, 0%, 100%);
       width: 45%;
       margin: 100px auto;
       padding: 40px;
       border-radius: 10px;
+      box-shadow: 0px 2px 2px hsl(240, 5%, 91%);
     }
 
+    .faq {
+      min-height: 80px;
+      padding: 20px 0;
+      border-bottom: 1px solid hsl(240, 5%, 91%);
+    }
+    
     .faq-question {
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      padding: 20px 0;
-      border-bottom: 1px solid hsl(240, 5%, 91%);
     }
+
+    .plus {
+      font-size: 1.5rem;
+      color: hsl(0, 0%, 100%);
+      background-color: hsl(281, 83%, 54%);
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+    }
+
+    .faq-question-heading {
+      width: 95%;
+      transition: color 0.3s ease;
+    }
+
+    .faq-question-heading:hover {
+      color: hsl(281, 83%, 54%);
+      transition: color 0.3s ease;
+    }
+
 
     .hide {
       display: none;
+    }
+
+    .faq-answer {
+      margin-top: 20px;
+      color: hsl(292, 16%, 49%);
+      transition: color 0.3s ease;
+      width: 92%;
+      font-weight: 400;
+    }
+
+    .footer {
+      margin-top: 50px;
+      text-align: center;
+      height: 30px;
+      width: 100%;
+    }
+
+    .dark-text {
+      background-color: hsl(292, 42%, 14%);
     }
 
     @media screen and (max-width: 375px) {
@@ -99,47 +144,67 @@
       <img src="./assets/images/icon-star.svg" alt="star" />
       <h1>FAQs</h1>
     </header>
-    <session class="faq">
+    <section class="faq">
       <div class="faq-question">
-        <h3>What is Frontend Mentor, and how will it help me?</h3><span>&plus;</span>
+        <h3 class="faq-question-heading">What is Frontend Mentor, and how will it help me?</h3><span class="plus faq-question-text">&plus;</span>
       </div>
       <p class="faq-answer hide">Frontend Mentor offers realistic coding challenges to help developers improve their
         frontend coding skills with projects in HTML, CSS, and JavaScript. It's suitable for
         all levels and ideal for portfolio building.</p>
-    </session>
+    </section>
 
-    <session class="faq">
+    <section class="faq">
       <div class="faq-question">
-        <h3>Is Frontend Mentor free?</h3> <span>&plus;</span>
+        <h3 class="faq-question-heading">Is Frontend Mentor free?</h3> <span class="plus faq-question-text">&plus;</span>
       </div>
       <p class="faq-answer hide">Yes, Frontend Mentor offers both free and premium coding challenges, with the free
         option providing access to a range of projects suitable for all skill levels.</p>
-    </session>
+    </section>
 
-    <session class="faq">
+    <section class="faq">
       <div class="faq-question">
-        <h3>Can I use Frontend Mentor projects in my portfolio?</h3><span>&plus;</span>
+        <h3 class="faq-question-heading">Can I use Frontend Mentor projects in my portfolio?</h3><span class="plus faq-question-text">&plus;</span>
       </div>
       <p class="faq-answer hide">Yes, you can use projects completed on Frontend Mentor in your portfolio. It's an
         excellent
         way to showcase your skills to potential employers!</p>
-    </session>
+    </section>
 
-    <session class="faq">
+    <section class="faq">
       <div class="faq-question">
-        <h3>How can I get help if I'm stuck on a Frontend Mentor challenge?</h3><span>&plus;</span>
+        <h3 class="faq-question-heading">How can I get help if I'm stuck on a Frontend Mentor challenge?</h3><span class="plus faq-question-text">&plus;</span>
       </div>
       <p class="faq-answer hide">The best place to get help is inside Frontend Mentor's Discord community. There's a
         help
         channel where you can ask questions and seek support from other community members.</p>
-    </session>
+    </section>
   </div>
 
 
-  <footer class="attribution">
+  <footer class="attribution footer">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
     Coded by <a href="https://github.com/luwat">Oluwatobi A. Oreniyi</a>.
   </footer>
 </body>
+
+<script>
+  const faqs = document.querySelectorAll(".faq-question");
+
+  faqs.forEach((faq) => {
+    faq.addEventListener("click", () => {
+      const faqAnswer = faq.nextElementSibling;
+      const faqQuestionText = faq.querySelector(".faq-question-text");
+
+      faqAnswer.classList.toggle("hide");
+      if (faqAnswer.classList.contains("hide")) {
+        faqQuestionText.textContent = "+";
+        faqQuestionText.classList.remove("dark-text");
+      } else {
+        faqQuestionText.textContent = "−";
+        faqQuestionText.classList.add("dark-text");
+      }
+    })
+  })
+</script>
 
 </html>
